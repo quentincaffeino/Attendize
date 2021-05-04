@@ -26,7 +26,7 @@ class GenerateTicketsJobBase implements ShouldQueue
      */
     public function handle()
     {
-        $file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $this->file_name;
+        $file_path = join(DIRECTORY_SEPARATOR, [public_path(config('attendize.event_pdf_tickets_path')), $this->file_name]);
         $file_with_ext = $file_path . '.pdf';
 
         if (file_exists($file_with_ext)) {
@@ -39,7 +39,10 @@ class GenerateTicketsJobBase implements ShouldQueue
         $images = [];
         $imgs = $this->event->images;
         foreach ($imgs as $img) {
-            $images[] = base64_encode(file_get_contents(public_path($img->image_path)));
+            $event_image_abs_pathname = public_path($img->image_path);
+            if (file_exists($event_image_abs_pathname)) {
+                $images[] = base64_encode(file_get_contents($event_image_abs_pathname));
+            }
         }
 
         $data = [

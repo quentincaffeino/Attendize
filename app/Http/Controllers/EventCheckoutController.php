@@ -397,7 +397,7 @@ class EventCheckoutController extends Controller
 
         $event = Event::findOrFail($event_id);
 
-        $order_requires_payment = $ticket_order['order_requires_payment'];
+        $order_requires_payment = $ticket_order['order_requires_payment'] ?? false;
 
         if ($order_requires_payment && $request->get('pay_offline') && $event->enable_offline_payments) {
             return $this->completeOrder($event_id);
@@ -800,7 +800,10 @@ class EventCheckoutController extends Controller
         $images = [];
         $imgs = $order->event->images;
         foreach ($imgs as $img) {
-            $images[] = base64_encode(file_get_contents(public_path($img->image_path)));
+            $order_image_abs_pathname = public_path($img->image_path);
+            if (file_exists($order_image_abs_pathname)) {
+                $images[] = base64_encode(file_get_contents($order_image_abs_pathname));
+            }
         }
 
         $data = [
