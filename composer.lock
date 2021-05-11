@@ -91,6 +91,66 @@
             "time": "2020-01-24T19:11:35+00:00"
         },
         {
+            "name": "bileto/omnipay-gopay",
+            "version": "v0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bileto/omnipay-gopay.git",
+                "reference": "3f8b591d14dc8f259eb76692a34edae58d0ab548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bileto/omnipay-gopay/zipball/3f8b591d14dc8f259eb76692a34edae58d0ab548",
+                "reference": "3f8b591d14dc8f259eb76692a34edae58d0ab548",
+                "shasum": ""
+            },
+            "require": {
+                "omnipay/common": "^3.0"
+            },
+            "require-dev": {
+                "omnipay/tests": "^3.0",
+                "php-http/guzzle6-adapter": "^1.0",
+                "symfony/var-dumper": "^2.7",
+                "vlucas/phpdotenv": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Omnipay\\GoPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michal Sänger",
+                    "email": "michal.sanger@bileto.com"
+                },
+                {
+                    "name": "Jan Machala",
+                    "email": "jan.machala@bileto.com"
+                }
+            ],
+            "description": "GoPay gateway for Omnipay payment processing library",
+            "homepage": "https://github.com/bileto/omnipay-gopay",
+            "keywords": [
+                "gateway",
+                "gopay",
+                "merchant",
+                "omnipay",
+                "pay",
+                "payment",
+                "purchase"
+            ],
+            "support": {
+                "issues": "https://github.com/bileto/omnipay-gopay/issues",
+                "source": "https://github.com/bileto/omnipay-gopay/tree/v0.8.0"
+            },
+            "time": "2019-03-12T17:54:09+00:00"
+        },
+        {
             "name": "clue/stream-filter",
             "version": "v1.4.1",
             "source": {
