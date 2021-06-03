@@ -92,16 +92,16 @@
         },
         {
             "name": "bileto/omnipay-gopay",
-            "version": "v0.8.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bileto/omnipay-gopay.git",
-                "reference": "3f8b591d14dc8f259eb76692a34edae58d0ab548"
+                "url": "https://github.com/quentincaffeino/omnipay-gopay.git",
+                "reference": "01840eb2fbf20a9366a1540599f0f44c66eb4dc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bileto/omnipay-gopay/zipball/3f8b591d14dc8f259eb76692a34edae58d0ab548",
-                "reference": "3f8b591d14dc8f259eb76692a34edae58d0ab548",
+                "url": "https://api.github.com/repos/quentincaffeino/omnipay-gopay/zipball/01840eb2fbf20a9366a1540599f0f44c66eb4dc0",
+                "reference": "01840eb2fbf20a9366a1540599f0f44c66eb4dc0",
                 "shasum": ""
             },
             "require": {
@@ -113,13 +113,13 @@
                 "symfony/var-dumper": "^2.7",
                 "vlucas/phpdotenv": "^3.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Omnipay\\GoPay\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -145,10 +145,9 @@
                 "purchase"
             ],
             "support": {
-                "issues": "https://github.com/bileto/omnipay-gopay/issues",
-                "source": "https://github.com/bileto/omnipay-gopay/tree/v0.8.0"
+                "source": "https://github.com/quentincaffeino/omnipay-gopay/tree/fix/missing-isredirect-method"
             },
-            "time": "2019-03-12T17:54:09+00:00"
+            "time": "2021-06-03T17:13:11+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -9041,6 +9040,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "bileto/omnipay-gopay": 20,
         "nitmedia/wkhtml2pdf": 20
     },
     "prefer-stable": false,

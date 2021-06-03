@@ -54,6 +54,13 @@ class Factory
 
                 }
 
+            case GoPay::GATEWAY_NAME: {
+                    $paymentGatewayConfig['testMode'] = true;
+                    $gateway = Omnipay::create($name);
+                    $gateway->initialize($paymentGatewayConfig);
+                    return new GoPay($gateway, $paymentGatewayConfig);
+                }
+
             default :
                 {
                     throw New \Exception('Invalid gateway specified');
