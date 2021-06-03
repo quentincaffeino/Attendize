@@ -2,8 +2,6 @@
 
 namespace Services\PaymentGateway;
 
-use Omnipay\GoPay\Message\AccessTokenRequest;
-
 class GoPay
 {
 
@@ -73,7 +71,6 @@ class GoPay
     public function startTransaction($order_total, $order_email, $event)
     {
         $this->createTransactionData($order_total, $order_email, $event);
-        $accessTokenResponse = $this->gateway->getAccessToken();
         $response = $this->gateway->purchase($this->transaction_data);
 
         return $response;
