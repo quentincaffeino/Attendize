@@ -4,22 +4,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                {!! Form::label('gopay[goid]', 'GoID', array('class'=>'control-label ')) !!}
-                {!! Form::text('gopay[goid]', $account->getGatewayConfigVal($payment_gateway['id'], 'goid'),[ 'class'=>'form-control'])  !!}
+                {!! Form::label('gopay[goId]', 'GoID', array('class'=>'control-label ')) !!}
+                {!! Form::text('gopay[goId]', $account->getGatewayConfigVal($payment_gateway['id'], 'goId'),[ 'class'=>'form-control'])  !!}
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                {!! Form::label('gopay[client_id]', 'Client ID', array('class'=>'control-label ')) !!}
-                {!! Form::text('gopay[client_id]', $account->getGatewayConfigVal($payment_gateway['id'], 'client_id'),[ 'class'=>'form-control'])  !!}
+                {!! Form::label('gopay[clientId]', 'Client ID', array('class'=>'control-label ')) !!}
+                {!! Form::text('gopay[clientId]', $account->getGatewayConfigVal($payment_gateway['id'], 'clientId'),[ 'class'=>'form-control'])  !!}
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                {!! Form::label('gopay[client_secret]', 'Client Secret', array('class'=>'control-label ')) !!}
-                {!! Form::text('gopay[client_secret]', $account->getGatewayConfigVal($payment_gateway['id'], 'client_secret'),[ 'class'=>'form-control'])  !!}
+                {!! Form::label('gopay[clientSecret]', 'Client Secret', array('class'=>'control-label ')) !!}
+                {!! Form::text('gopay[clientSecret]', $account->getGatewayConfigVal($payment_gateway['id'], 'clientSecret'),[ 'class'=>'form-control'])  !!}
             </div>
         </div>
     </div>
