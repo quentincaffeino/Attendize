@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Services\PaymentGateway\Dummy;
+use Services\PaymentGateway\GoPay;
 use Services\PaymentGateway\Stripe;
 use Services\PaymentGateway\StripeSCA;
 use Utils;
@@ -127,6 +128,9 @@ class ManageAccountController extends MyBaseController
                 break;
             case StripeSCA::GATEWAY_NAME :
                 $config = $request->get('stripe_sca');
+                break;
+            case GoPay::GATEWAY_NAME :
+                $config = $request->get('gopay');
                 break;
             case Dummy::GATEWAY_NAME :
                 break;
