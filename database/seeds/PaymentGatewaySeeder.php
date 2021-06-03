@@ -62,18 +62,18 @@ class PaymentGatewaySeeder extends Seeder
             );
         }
 
-        $gopayPaymentIntents = DB::table('payment_gateways')->where('name', '=', 'Gopay')->first();
+        $gopayPaymentIntents = DB::table('payment_gateways')->where('name', '=', 'GoPay')->first();
         if ($gopayPaymentIntents === null) {
             DB::table('payment_gateways')->insert(
                 [
-                    'name' => 'Gopay',
-                    'provider_name' => 'Gopay',
+                    'name' => 'GoPay',
+                    'provider_name' => 'GoPay',
                     'provider_url' => 'https://www.gopay.com',
                     'is_on_site' => 0,
                     'can_refund' => 0,
                     'default' => 0,
-                    'admin_blade_template' => 'ManageAccount.Partials.Gopay',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentGopay'
+                    'admin_blade_template' => 'ManageAccount.Partials.GoPay',
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentGoPay'
                 ]
             );
         }

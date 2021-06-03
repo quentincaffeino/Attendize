@@ -48,13 +48,13 @@ $factory->state(PaymentGateway::class, 'Stripe SCA', [
     'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA'
 ]);
 
-$factory->state(PaymentGateway::class, 'Gopay', [
-    'name' => 'Gopay',
-    'provider_name' => 'Gopay',
+$factory->state(PaymentGateway::class, 'GoPay', [
+    'name' => 'GoPay',
+    'provider_name' => 'GoPay',
     'provider_url' => 'https://www.gopay.com',
     'is_on_site' => 0,
     'can_refund' => 0,
     'default' => 0,
-    'admin_blade_template' => 'ManageAccount.Partials.Gopay',
-    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentGopay'
+    'admin_blade_template' => 'ManageAccount.Partials.GoPay',
+    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentGoPay'
 ]);
