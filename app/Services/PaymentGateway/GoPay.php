@@ -27,6 +27,8 @@ class GoPay
 
         $transactionReference = uniqid();
 
+        $totalAmount = floatval($order_total) * 100;
+
         $this->transaction_data = [
             'transactionReference' => $transactionReference,
 
@@ -39,7 +41,7 @@ class GoPay
                     'type' => 'ACCOUNT',
                     'goid' => $this->gateway->getParameter('goId'),
                 ],
-                'amount' => floatval($order_total) * 100,
+                'amount' => $totalAmount,
                 'currency' => 'CZK',
                 'order_number' => $transactionReference,
                 'order_description' => 'Order for customer: ' . $order_email,
@@ -47,7 +49,7 @@ class GoPay
                     [
                         'count' => 1,
                         'name' => 'Order for customer: ' . $order_email,
-                        'amount' => floatval($order_total) * 100
+                        'amount' => $totalAmount
                     ],
                 ],
                 // 'eet'               => [
