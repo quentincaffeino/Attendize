@@ -92,29 +92,8 @@ class GoPay
 
     public function completeTransaction($data)
     {
-        // if (array_key_exists('payment_intent', $data)) {
-        //     $intentData = [
-        //         'paymentIntentReference' => $data['payment_intent'],
-        //     ];
-        // } else {
-        //     $intentData = [
-        //         'paymentIntentReference' => $this->options['payment_intent'],
-        //     ];
-        // }
-
-        // $paymentIntent = $this->gateway->fetchPaymentIntent($intentData);
-        // $response = $paymentIntent->send();
-
-        // if ($response->requiresConfirmation()) {
-        //     $confirmResponse = $this->gateway->confirm($intentData)->send();
-        //     if ($confirmResponse->isSuccessful()) {
-        //         $response = $this->gateway->capture($intentData)->send();
-        //     }
-        // } else {
-        //     $response = $this->gateway->capture($intentData)->send();
-        // }
-
-        // return $response;
+        $completeRequest = ['transactionReference' => $_GET['id']];
+        return $this->gateway->completePurchase($completeRequest);
     }
 
     public function getAdditionalData($response)
