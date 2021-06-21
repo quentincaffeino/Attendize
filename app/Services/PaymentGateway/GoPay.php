@@ -11,7 +11,7 @@ class GoPay
 
     private $gateway;
 
-    private $extra_params = [];
+    private $extra_params = ['id'];
 
     public function __construct($gateway, $options)
     {
@@ -94,15 +94,22 @@ class GoPay
 
     public function completeTransaction($data)
     {
-        $completeRequest = ['transactionReference' => $_GET['id']];
+        if (array_key_exists('id', $data)) {
+            $completeRequest = [
+                'transactionReference' => $data['id']
+            ];
+        } else {
+            $completeRequest = [
+                'transactionReference' => $this->options['id'],
+            ];
+        }
         return $this->gateway->completePurchase($completeRequest);
     }
 
     public function getAdditionalData($response)
     {
-        // $additionalData['payment_intent'] = $response->getPaymentIntentReference();
-        // return $additionalData;
-        return [];
+        $additionalData['id'] = $response->getTransactionReference();
+        return $additionalData;
     }
 
     public function storeAdditionalData()
