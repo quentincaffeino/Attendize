@@ -17,7 +17,15 @@ if (! function_exists('public_route')) {
             return app('url')->route($name, $parameters, $absolute);
         }
 
-        $route = Route::getRoutes()->getByName($name)->domain(env('PUBLIC_URL', Request::root()));
-        return app('url')->toRoute($route, $parameters, true);
+        $requestRoot = Request::root();
+
+        // Temporary replace default app domain with public domain
+        $route = Route::getRoutes()->getByName($name)->domain(env('PUBLIC_URL', $requestRoot));
+        // Generate public url string
+        $result = app('url')->toRoute($route, $parameters, true);
+        // Set domain to default value
+        $route = Route::getRoutes()->getByName($name)->domain($requestRoot);
+
+        return $result;
     }
 }
