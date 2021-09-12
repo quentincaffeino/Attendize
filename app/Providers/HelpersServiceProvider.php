@@ -16,8 +16,9 @@ class HelpersServiceProvider extends ServiceProvider
     public function boot()
     {
         require app_path('Helpers/helpers.php');
-        require app_path('Helpers/public_route.php');
         require app_path('Helpers/strings.php');
+        require app_path('Helpers/public_route.php');
+        require app_path('Helpers/app_url.php');
         $this->paymentUtils();
     }
 
