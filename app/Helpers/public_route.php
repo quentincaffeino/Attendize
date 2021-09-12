@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-if (! function_exists('public_route')) {
+if (!function_exists('public_route')) {
     /**
      * Generate the URL to a named route.
      *
@@ -13,18 +13,23 @@ if (! function_exists('public_route')) {
      */
     function public_route($name, $parameters = [], $absolute = true)
     {
+        $urlGenerator = app('url');
+
         if (!$absolute) {
-            return app('url')->route($name, $parameters, $absolute);
+            return $urlGenerator->route($name, $parameters, $absolute);
         }
 
-        $requestRoot = Request::root();
+        $appUrl = env('APP_URL', $urlGenerator->getRequest()->root());
+        $publicUrl = env('PUBLIC_URL', $appUrl);
 
-        // Temporary replace default app domain with public domain
-        $route = Route::getRoutes()->getByName($name)->domain(env('PUBLIC_URL', $requestRoot));
-        // Generate public url string
-        $result = app('url')->toRoute($route, $parameters, true);
-        // Set domain to default value
-        $route = Route::getRoutes()->getByName($name)->domain($requestRoot);
+        if ($appUrl !== $publicUrl) {
+            // Temporary replace default app domain with public domain
+            $route = Route::getRoutes()->getByName($name)->domain($publicUrl);
+            // Generate public url string
+            $result = $urlGenerator->toRoute($route, $parameters, true);
+            // Set domain to default value
+            $route = Route::getRoutes()->getByName($name)->domain($appUrl);
+        }
 
         return $result;
     }
