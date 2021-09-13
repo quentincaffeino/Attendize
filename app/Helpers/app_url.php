@@ -14,15 +14,31 @@ if (!function_exists('app_url')) {
     function app_url($path, $extra = [], $secure = null)
     {
         $urlGenerator = app('url');
-        $requestRoot = $urlGenerator->getRequest()->root();
-        $appUrl = env('APP_URL', $requestRoot);
+        $appUrl = env('APP_URL', null);
 
-        // Temporary replace default app domain with public domain
-        $urlGenerator->forceRootUrl($appUrl);
+        if ($appUrl !== null) {
+            $parsedPath = parse_url($path);
+            $parsedAppUrl = parse_url($appUrl);
+
+            if ($parsedAppUrl) {
+                $parsedPath['host'] = $parsedAppUrl['host'];
+            } else {
+                $parsedPath['host'] = $appUrl;
+            }
+
+            // Temporary replace default app domain with public domain
+            $urlGenerator->forceRootUrl($parsedPath['host']);
+
+            $path = unparse_url($parsedPath);
+        }
+
         // Generate public url string
         $result = $urlGenerator->to($path, $extra, $secure);
-        // Set domain to default value
-        $urlGenerator->forceRootUrl('');
+
+        if ($appUrl !== null) {
+            // Reset domain to default value
+            $urlGenerator->forceRootUrl('');
+        }
 
         return $result;
     }

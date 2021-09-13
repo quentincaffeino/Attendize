@@ -19,6 +19,7 @@ class HelpersServiceProvider extends ServiceProvider
         require app_path('Helpers/strings.php');
         require app_path('Helpers/public_route.php');
         require app_path('Helpers/app_url.php');
+        require app_path('Helpers/unparse_url.php');
         $this->paymentUtils();
     }
 
