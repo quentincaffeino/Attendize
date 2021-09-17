@@ -14,9 +14,9 @@ if (!function_exists('app_url')) {
     function app_url($path, $extra = [], $secure = null)
     {
         $urlGenerator = app('url');
-        $appUrl = env('APP_URL', null);
+        $appUrl = env('APP_URL', '');
 
-        if ($appUrl !== null) {
+        if (isset($appUrl) && $appUrl !== '') {
             $parsedPath = parse_url($path);
             $parsedAppUrl = parse_url($appUrl);
 
@@ -35,7 +35,7 @@ if (!function_exists('app_url')) {
         // Generate public url string
         $result = $urlGenerator->to($path, $extra, $secure);
 
-        if ($appUrl !== null) {
+        if (isset($appUrl) && $appUrl !== '') {
             // Reset domain to default value
             $urlGenerator->forceRootUrl('');
         }

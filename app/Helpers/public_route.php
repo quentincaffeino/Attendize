@@ -20,9 +20,9 @@ if (!function_exists('public_route')) {
         }
 
         $appUrl = env('APP_URL', $urlGenerator->getRequest()->root());
-        $publicUrl = env('PUBLIC_URL', $appUrl);
+        $publicUrl = env('PUBLIC_URL', '');
 
-        if ($appUrl !== $publicUrl) {
+        if (isset($publicUrl) && $publicUrl !== '') {
             // Temporary replace default app domain with public domain
             $route = Route::getRoutes()->getByName($name)->domain($publicUrl);
             // Generate public url string
