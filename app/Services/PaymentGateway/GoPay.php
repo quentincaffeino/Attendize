@@ -2,6 +2,8 @@
 
 namespace Services\PaymentGateway;
 
+use RuntimeException;
+
 class GoPay
 {
 
@@ -122,17 +124,22 @@ class GoPay
         $request = $this->gateway->cancel([
             'transactionReference' => $order->transaction_id,
             'amount' => $refund_amount,
-            'refundApplicationFee' => $refund_application_fee,
-            'paymentIntentReference' => $order->payment_intent
         ]);
 
-        $response = $request->send();
+        $refundResponse = [];
 
-        if ($response->isCancelled()) {
-            $refundResponse['successful'] = true;
-        } else {
+        try {
+            $response = $request->send();
+
+            if ($response->isSuccessful()) {
+                $refundResponse['successful'] = true;
+            } else {
+                $refundResponse['successful'] = false;
+                $refundResponse['error_message'] = $response->getMessage();
+            }
+        } catch (RuntimeException $e) {
             $refundResponse['successful'] = false;
-            $refundResponse['error_message'] = $response->getMessage();
+            $refundResponse['error_message'] = $e->getMessage();
         }
 
         return $refundResponse;
