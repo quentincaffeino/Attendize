@@ -727,7 +727,7 @@ class EventCheckoutController extends Controller
         // Send tickets to attendees
         Log::debug('Queueing Attendee Ticket Jobs');
         foreach ($order->attendees as $attendee) {
-            if (isset($attendee->email) && $attendee->email !== $order->email) {
+            if (isset($attendee->email) && !empty($attendee->email) && $attendee->email !== $order->email) {
                 SendOrderAttendeeTicketJob::dispatch($attendee);
                 Log::debug('Queueing Attendee Ticket Job Done');
             }
