@@ -22,8 +22,10 @@ if (!function_exists('app_url')) {
 
             if ($parsedAppUrl) {
                 $parsedPath['host'] = $parsedAppUrl['host'];
+                $parsedPath['port'] = isset($parsedAppUrl['port']) ? $parsedAppUrl['port'] : null;
             } else {
                 $parsedPath['host'] = $appUrl;
+                $parsedPath['port'] = null;
             }
 
             // Temporary replace default app domain with public domain
